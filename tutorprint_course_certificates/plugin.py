@@ -19,6 +19,13 @@ hooks.Filters.CONFIG_DEFAULTS.add_items(
         # Each new setting is a pair: (setting_name, default_value).
         # Prefix your setting names with 'PRINT_COURSE_CERTIFICATES_'.
         ("PRINT_COURSE_CERTIFICATES_VERSION", __version__),
+        ("RUN_PRINT_COURSE_CERTIFICATE", True),
+        ("PRINT_COURSE_CERTIFICATES_DOCKER_IMAGE", 'docker.io/nauedu/nau-course-certificate:master'),
+        ("PRINT_COURSE_CERTIFICATES_UWSGI_WORKERS", 2),
+        ("PRINT_COURSE_CERTIFICATES_HOST", "course-certificate.{{ LMS_HOST }}"),
+        ("PRINT_COURSE_CERTIFICATES_PORT", 5000),
+        ("PRINT_COURSE_CERTIFICATES_CERTIFICATE_P12_PATH", None),
+        ("PRINT_COURSE_CERTIFICATES_CONFIG", {"some": "value"})
     ]
 )
 
