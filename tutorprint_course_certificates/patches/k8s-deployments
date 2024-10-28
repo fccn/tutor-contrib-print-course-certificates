@@ -17,6 +17,7 @@ spec:
       labels:
         app.kubernetes.io/name: print-course-certificates
     spec:
+      terminationGracePeriodSeconds: 60
       containers:
         - env:
             - name: UWSGI_WORKERS
@@ -27,6 +28,17 @@ spec:
           name: print-course-certificates
           ports:
             - containerPort: {{ PRINT_COURSE_CERTIFICATES_PORT }}
+          resources:
+            requests:
+              memory: {{ PRINT_COURSE_CERTIFICATES_MEMORY_REQUEST }}
+            {%- if PRINT_COURSE_CERTIFICATES_CPU_REQUEST is defined %}
+              cpu: {{ PRINT_COURSE_CERTIFICATES_CPU_REQUEST }}
+            {%- endif %}
+            limits:
+              memory: {{ PRINT_COURSE_CERTIFICATES_MEMORY_LIMIT }}
+              {%- if PRINT_COURSE_CERTIFICATES_CPU_LIMIT is defined %}
+              cpu: {{ PRINT_COURSE_CERTIFICATES_CPU_LIMIT }}
+              {%- endif %}
           volumeMounts:
             - mountPath: /app/config.yml
               name: config
@@ -44,4 +56,39 @@ spec:
           configMap:
             name: print-course-certificates-digital-signature-file-p12
 {% endif %}
+
+{% if PRINT_COURSE_CERTIFICATES_POD_AUTOSCALING %}
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: print-course-certificates-hpa
+  labels:
+    app.kubernetes.io/name: print-course-certificates-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: print-course-certificates
+  minReplicas: {{ PRINT_COURSE_CERTIFICATES_POD_AUTOSCALING_MIN_REPLICAS }}
+  maxReplicas: {{ PRINT_COURSE_CERTIFICATES_POD_AUTOSCALING_MAX_REPLICAS }}
+  metrics:
+  {%- if PRINT_COURSE_CERTIFICATES_POD_AUTOSCALING_AVG_CPU > 0 %}
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: {{ PRINT_COURSE_CERTIFICATES_POD_AUTOSCALING_AVG_CPU }}
+  {%- endif %}
+  {%- if PRINT_COURSE_CERTIFICATES_POD_AUTOSCALING_AVG_MEMORY|length %}
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: AverageValue
+        averageValue: {{ PRINT_COURSE_CERTIFICATES_POD_AUTOSCALING_AVG_MEMORY }}
+  {%- endif %}
+{% endif %}
+
 {% endif %}
