@@ -20,19 +20,32 @@ hooks.Filters.CONFIG_DEFAULTS.add_items(
         # Prefix your setting names with 'PRINT_COURSE_CERTIFICATES_'.
         ("PRINT_COURSE_CERTIFICATES_VERSION", __version__),
         ("RUN_PRINT_COURSE_CERTIFICATE", True),
-        ("PRINT_COURSE_CERTIFICATES_DOCKER_IMAGE", 'docker.io/nauedu/nau-course-certificate:master'),
+        (
+            "PRINT_COURSE_CERTIFICATES_DOCKER_IMAGE",
+            "docker.io/nauedu/nau-course-certificate:master",
+        ),
         ("PRINT_COURSE_CERTIFICATES_UWSGI_WORKERS", 2),
         ("PRINT_COURSE_CERTIFICATES_HOST", "course-certificate.{{ LMS_HOST }}"),
         ("PRINT_COURSE_CERTIFICATES_PORT", 5000),
         ("PRINT_COURSE_CERTIFICATES_CERTIFICATE_P12_PATH", None),
         ("PRINT_COURSE_CERTIFICATES_CONFIG", {"some": "value"}),
-
         # Resource constraints
-        ("PRINT_COURSE_CERTIFICATES_MEMORY_REQUEST", "{{ PRINT_COURSE_CERTIFICATES_UWSGI_WORKERS * 100 }}Mi"),
-        ("PRINT_COURSE_CERTIFICATES_MEMORY_LIMIT", "{{ PRINT_COURSE_CERTIFICATES_UWSGI_WORKERS * 200 }}Mi"),
-        ("PRINT_COURSE_CERTIFICATES_CPU_REQUEST", "{{ PRINT_COURSE_CERTIFICATES_UWSGI_WORKERS / 2 * 1000 | int }}ms"),
-        ("PRINT_COURSE_CERTIFICATES_CPU_LIMIT", "{{ PRINT_COURSE_CERTIFICATES_UWSGI_WORKERS * 1000 | int }}ms"),
-
+        (
+            "PRINT_COURSE_CERTIFICATES_MEMORY_REQUEST",
+            "{{ PRINT_COURSE_CERTIFICATES_UWSGI_WORKERS * 100 }}Mi",
+        ),
+        (
+            "PRINT_COURSE_CERTIFICATES_MEMORY_LIMIT",
+            "{{ PRINT_COURSE_CERTIFICATES_UWSGI_WORKERS * 200 }}Mi",
+        ),
+        (
+            "PRINT_COURSE_CERTIFICATES_CPU_REQUEST",
+            "{{ PRINT_COURSE_CERTIFICATES_UWSGI_WORKERS / 2 * 1000 | int }}ms",
+        ),
+        (
+            "PRINT_COURSE_CERTIFICATES_CPU_LIMIT",
+            "{{ PRINT_COURSE_CERTIFICATES_UWSGI_WORKERS * 1000 | int }}ms",
+        ),
         # Kubernetes HPA autoscaling settings
         ("PRINT_COURSE_CERTIFICATES_POD_AUTOSCALING", True),
         ("PRINT_COURSE_CERTIFICATES_POD_AUTOSCALING_MIN_REPLICAS", 1),
@@ -177,7 +190,9 @@ hooks.Filters.ENV_TEMPLATE_TARGETS.add_items(
 
 # For each file in tutorprint_course_certificates/patches,
 # apply a patch based on the file's name and contents.
-for path in glob(str(importlib_resources.files("tutorprint_course_certificates") / "patches" / "*")):
+for path in glob(
+    str(importlib_resources.files("tutorprint_course_certificates") / "patches" / "*")
+):
     with open(path, encoding="utf-8") as patch_file:
         hooks.Filters.ENV_PATCHES.add_item((os.path.basename(path), patch_file.read()))
 
