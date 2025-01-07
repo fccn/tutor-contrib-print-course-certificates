@@ -13,7 +13,7 @@ Features:
 ## Installation
 
 ```bash
-pip install git+https://github.com/fccn/tutor-contrib-print-course-certificates@v18.1.0
+pip install git+https://github.com/fccn/tutor-contrib-print-course-certificates@v18.2.0
 ```
 
 ## Usage
