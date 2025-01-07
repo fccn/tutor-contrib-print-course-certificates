@@ -9,7 +9,7 @@
 {% if PRINT_COURSE_CERTIFICATES_CERTIFICATE_P12_PATH %}
 - name: print-course-certificates-digital-signature-file-p12
   files:
-    - {{ PRINT_COURSE_CERTIFICATES_CERTIFICATE_P12_PATH }}
+    - plugins/print-course-certificates/apps/file.p12
   options:
     labels:
         app.kubernetes.io/name: print-course-certificates

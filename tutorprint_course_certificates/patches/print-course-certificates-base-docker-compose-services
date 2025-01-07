@@ -3,7 +3,7 @@ restart: unless-stopped
 volumes:
     - ../../env/plugins/print-course-certificates/apps/config.yml:/app/config.yml:ro
 {% if PRINT_COURSE_CERTIFICATES_CERTIFICATE_P12_PATH %}
-    - {{ PRINT_COURSE_CERTIFICATES_CERTIFICATE_P12_PATH }}:/app/digital_signature/file.p12:ro
+    - ../../env/plugins/print-course-certificates/apps/file.p12:/app/digital_signature/file.p12:ro
 {% endif %}
 healthcheck:
   test: ["CMD", "echo", "''", ">", "/dev/tcp/127.0.0.1/5000", "||", "exit", "1"]
