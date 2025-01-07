@@ -263,8 +263,11 @@ for path in glob(
 # This would allow you to run:
 #   $ tutor print-course-certificates example-command
 
+
 @hooks.Actions.PLUGINS_LOADED.add()
 def _copy_file_p12() -> None:
     config = tutor_config.get_user(os.environ["TUTOR_ROOT"])
     p12_path = config.get("PRINT_COURSE_CERTIFICATES_CERTIFICATE_P12_PATH")
-    shutil.copyfile(p12_path, "env/plugins/print-course-certificates/apps/file.p12")
+    shutil.copyfile(
+        str(p12_path), "env/plugins/print-course-certificates/apps/file.p12"
+    )
