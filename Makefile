@@ -42,7 +42,7 @@ build-pythonpackage: ## Build Python packages ready to upload to pypi
 .PHONY: build-pythonpackage
 
 # Warning: These checks are not necessarily run on every PR.
-test: test-types test-format  # Run some static checks.
+test: test-types test-format  ## Run all tests.
 .PHONY: test
 
 test-format: ## Run code formatting tests
