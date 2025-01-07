@@ -12,8 +12,15 @@ Features:
 
 ## Installation
 
+From Git
 ```bash
 pip install git+https://github.com/fccn/tutor-contrib-print-course-certificates@v18.2.0
+```
+
+Or from [Pypi](https://pypi.org/project/tutor-contrib-print-course-certificates/)
+
+```bash
+pip install tutor-contrib-print-course-certificates==18.2.0
 ```
 
 ## Usage
@@ -21,6 +28,10 @@ pip install git+https://github.com/fccn/tutor-contrib-print-course-certificates@
 ```bash
 tutor plugins enable print-course-certificates
 ```
+
+## Release
+
+To generate a new release, create a PR/commit with commit message: "chore: preparing release X.X.X", that also changes the `tutorprint_course_certificates/__about__.py` file. Merge it to `main`, then create its Git tag using, `git tag vX.X.X`, then push it `git push --tags`.
 
 ## License
 
