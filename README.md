@@ -14,13 +14,13 @@ Features:
 
 From Git
 ```bash
-pip install git+https://github.com/fccn/tutor-contrib-print-course-certificates@v18.2.1
+pip install git+https://github.com/fccn/tutor-contrib-print-course-certificates@v18.2.2
 ```
 
 Or from [Pypi](https://pypi.org/project/tutor-contrib-print-course-certificates/)
 
 ```bash
-pip install tutor-contrib-print-course-certificates==18.2.1
+pip install tutor-contrib-print-course-certificates==18.2.2
 ```
 
 ## Usage
