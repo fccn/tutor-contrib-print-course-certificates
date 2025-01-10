@@ -44,7 +44,7 @@ spec:
               name: config
 {% if PRINT_COURSE_CERTIFICATES_CERTIFICATE_P12_PATH %}
             - mountPath: /app/digital_signature/file.p12
-              name: digital_signature_file_p12
+              name: digital-signature-file-p12
 {% endif %}
       restartPolicy: Always
       volumes:
@@ -52,7 +52,7 @@ spec:
           configMap:
             name: print-course-certificates-config
 {% if PRINT_COURSE_CERTIFICATES_CERTIFICATE_P12_PATH %}
-        - name: digital_signature_file_p12
+        - name: digital-signature-file-p12
           configMap:
             name: print-course-certificates-digital-signature-file-p12
 {% endif %}
