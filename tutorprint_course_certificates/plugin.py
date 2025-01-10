@@ -40,11 +40,11 @@ hooks.Filters.CONFIG_DEFAULTS.add_items(
         ),
         (
             "PRINT_COURSE_CERTIFICATES_CPU_REQUEST",
-            "{{ ( PRINT_COURSE_CERTIFICATES_UWSGI_WORKERS / 2 * 1000) | round | int }}ms",
+            "{{ ( PRINT_COURSE_CERTIFICATES_UWSGI_WORKERS / 2 * 1000) | round | int }}m",
         ),
         (
             "PRINT_COURSE_CERTIFICATES_CPU_LIMIT",
-            "{{ ( PRINT_COURSE_CERTIFICATES_UWSGI_WORKERS * 1000 ) | round | int }}ms",
+            "{{ ( PRINT_COURSE_CERTIFICATES_UWSGI_WORKERS * 1000 ) | round | int }}m",
         ),
         # Kubernetes HPA autoscaling settings
         ("PRINT_COURSE_CERTIFICATES_POD_AUTOSCALING", True),
