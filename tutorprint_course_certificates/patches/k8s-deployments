@@ -42,9 +42,11 @@ spec:
           volumeMounts:
             - mountPath: /app/config.yml
               name: config
+              subPath: config.yml
 {% if PRINT_COURSE_CERTIFICATES_CERTIFICATE_P12_PATH %}
             - mountPath: /app/digital_signature/file.p12
               name: digital-signature-file-p12
+              subPath: file.p12
 {% endif %}
       restartPolicy: Always
       volumes:
