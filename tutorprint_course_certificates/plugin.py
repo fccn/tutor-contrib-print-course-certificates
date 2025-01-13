@@ -268,6 +268,10 @@ for path in glob(
 def _copy_file_p12() -> None:
     config = tutor_config.get_user(os.environ["TUTOR_ROOT"])
     p12_path = config.get("PRINT_COURSE_CERTIFICATES_CERTIFICATE_P12_PATH")
+    dest_fpath = "env/plugins/print-course-certificates/apps/file.p12"
+    # create folder of p12_path on env
+    os.makedirs(os.path.dirname(dest_fpath), exist_ok=True)
+    # copy file p12 to env
     shutil.copyfile(
-        str(p12_path), "env/plugins/print-course-certificates/apps/file.p12"
+        str(p12_path), dest_fpath
     )
