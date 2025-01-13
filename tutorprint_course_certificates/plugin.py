@@ -272,6 +272,4 @@ def _copy_file_p12() -> None:
     # create folder of p12_path on env
     os.makedirs(os.path.dirname(dest_fpath), exist_ok=True)
     # copy file p12 to env
-    shutil.copyfile(
-        str(p12_path), dest_fpath
-    )
+    shutil.copyfile(str(p12_path), dest_fpath)
