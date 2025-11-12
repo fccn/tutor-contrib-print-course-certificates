@@ -197,7 +197,7 @@ six==1.16.0
     #   python-dateutil
 tomlkit==0.13.2
     # via pylint
-tutor==18.1.4
+tutor==20.0.1
     # via -r requirements/base.txt
 twine==5.1.1
     # via -r requirements/dev.in
